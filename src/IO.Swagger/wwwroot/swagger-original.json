@@ -1,0 +1,621 @@
+{
+  "openapi" : "3.0.3",
+  "info" : {
+    "title" : "Swagger Petstore - OpenAPI 3.0",
+    "description" : "This is an opeapi specification for lab project 1\n\nMade by _Oleksandr Myroshnychenko_\n\nGroup - 6.04.121.10.19.2",
+    "version" : "1.0.11"
+  },
+  "servers" : [ {
+    "url" : "https://localhost:7112/"
+  } ],
+  "tags" : [ {
+    "name" : "student",
+    "description" : "CRUD operations with students"
+  }, {
+    "name" : "subject",
+    "description" : "CRUD operations with subjects"
+  }, {
+    "name" : "exam",
+    "description" : "CRUD operations with exams"
+  } ],
+  "paths" : {
+    "/api/student" : {
+      "get" : {
+        "tags" : [ "student" ],
+        "summary" : "Returns all students from db",
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Student"
+                  },
+                  "x-content-type" : "application/json"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "student" ],
+        "summary" : "Update an existing student",
+        "description" : "Updates an existing student",
+        "requestBody" : {
+          "description" : "Update an existent student",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Student"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Student"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "student" ],
+        "summary" : "Add a student to db",
+        "parameters" : [ {
+          "name" : "entityData",
+          "in" : "header",
+          "description" : "Data that will be added to db as a student",
+          "required" : false,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "$ref" : "#/components/schemas/entityData"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Student"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/student/{id}" : {
+      "get" : {
+        "tags" : [ "student" ],
+        "summary" : "Finds student by its id",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Id of student that needs to return",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer",
+            "example" : 1
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Student"
+                  },
+                  "x-content-type" : "application/json"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "student" ],
+        "summary" : "Deletes a student",
+        "description" : "delete the student by id",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Id of student that needs to be deleted",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer",
+            "example" : 1
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Student was successfully deleted",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Student"
+                  },
+                  "x-content-type" : "application/json"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/subject" : {
+      "get" : {
+        "tags" : [ "subject" ],
+        "summary" : "Returns all subjects from db",
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Subject"
+                  },
+                  "x-content-type" : "application/json"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "subject" ],
+        "summary" : "Update an existing subject",
+        "description" : "Updates an existing subject",
+        "requestBody" : {
+          "description" : "Update an existent subject",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Subject"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Subject"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "subject" ],
+        "summary" : "Create a subject in db",
+        "parameters" : [ {
+          "name" : "entityData",
+          "in" : "header",
+          "description" : "Data that will be added to db as a subject",
+          "required" : false,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "$ref" : "#/components/schemas/entityData_1"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Entity was successfully added",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Subject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/subject/{id}" : {
+      "get" : {
+        "tags" : [ "subject" ],
+        "summary" : "Finds subject by id",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Id of a subject that needs to return",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer",
+            "example" : 1
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Subject"
+                  },
+                  "x-content-type" : "application/json"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "subject" ],
+        "summary" : "Deletes a subject",
+        "description" : "delete a subject",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Id of a subject that need to be deleted",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer",
+            "example" : 1
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Student was successfully deleted",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Subject"
+                  },
+                  "x-content-type" : "application/json"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/exam" : {
+      "get" : {
+        "tags" : [ "exam" ],
+        "summary" : "Returns all exams from db",
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Exam"
+                  },
+                  "x-content-type" : "application/json"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "exam" ],
+        "summary" : "Update an existing exam",
+        "description" : "Updates an existing exam",
+        "requestBody" : {
+          "description" : "Update an existent exam",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Exam"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Exam"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "exam" ],
+        "summary" : "Create an exam in the db",
+        "parameters" : [ {
+          "name" : "entityData",
+          "in" : "header",
+          "description" : "Data that will be added to db as an exam",
+          "required" : false,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "$ref" : "#/components/schemas/entityData_2"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Entity was successfully added",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Exam"
+                  },
+                  "x-content-type" : "application/json"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/exam/{id}" : {
+      "get" : {
+        "tags" : [ "exam" ],
+        "summary" : "Finds an exam by id",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "ID of an exam that need to return",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer",
+            "example" : 1
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Exam"
+                  },
+                  "x-content-type" : "application/json"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "exam" ],
+        "summary" : "Deletes an exam",
+        "description" : "delete an exam",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Id of an exam that needs to be deleted",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer",
+            "example" : 1
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Student was successfully deleted",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Exam"
+                  },
+                  "x-content-type" : "application/json"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Student" : {
+        "type" : "object",
+        "properties" : {
+          "Id" : {
+            "type" : "integer",
+            "example" : 1
+          },
+          "FirstName" : {
+            "type" : "string",
+            "example" : "Oleksandr"
+          },
+          "LastName" : {
+            "type" : "string",
+            "example" : "Myroshnychenko"
+          },
+          "MiddleName" : {
+            "type" : "string",
+            "example" : "Sergeevich"
+          },
+          "Address" : {
+            "type" : "string",
+            "example" : "Ukraine, Kharkiv"
+          },
+          "Phone" : {
+            "type" : "string",
+            "example" : "+380502014596"
+          }
+        },
+        "example" : {
+          "Address" : "Ukraine, Kharkiv",
+          "FirstName" : "Oleksandr",
+          "Phone" : "+380502014596",
+          "Id" : 1,
+          "LastName" : "Myroshnychenko",
+          "MiddleName" : "Sergeevich"
+        }
+      },
+      "Subject" : {
+        "type" : "object",
+        "properties" : {
+          "Id" : {
+            "type" : "integer",
+            "example" : 1
+          },
+          "Name" : {
+            "type" : "string",
+            "example" : "СТО"
+          },
+          "LectureHours" : {
+            "type" : "integer",
+            "example" : 150
+          },
+          "PracticeHours" : {
+            "type" : "integer",
+            "example" : 100
+          },
+          "LabHours" : {
+            "type" : "integer",
+            "example" : 50
+          }
+        },
+        "example" : {
+          "PracticeHours" : 100,
+          "LectureHours" : 150,
+          "LabHours" : 50,
+          "Id" : 1,
+          "Name" : "СТО"
+        }
+      },
+      "Exam" : {
+        "type" : "object",
+        "properties" : {
+          "Id" : {
+            "type" : "integer",
+            "example" : 1
+          },
+          "Mark" : {
+            "type" : "number",
+            "example" : 90
+          },
+          "StudentId" : {
+            "type" : "integer",
+            "example" : 1
+          },
+          "SubjectId" : {
+            "type" : "integer",
+            "example" : 1
+          }
+        },
+        "example" : {
+          "Mark" : 90,
+          "Id" : 1,
+          "SubjectId" : 1,
+          "StudentId" : 1
+        }
+      },
+      "entityData" : {
+        "type" : "object",
+        "properties" : {
+          "firstName" : {
+            "type" : "string",
+            "example" : "Oleksandr"
+          },
+          "lastName" : {
+            "type" : "string",
+            "example" : "Myroshnychenko"
+          },
+          "middleName" : {
+            "type" : "string",
+            "example" : "Sergeevich"
+          },
+          "address" : {
+            "type" : "string",
+            "example" : "Ukraine, Kharkiv"
+          },
+          "phone" : {
+            "type" : "string",
+            "example" : "+380502014596"
+          }
+        }
+      },
+      "entityData_1" : {
+        "type" : "object",
+        "properties" : {
+          "Name" : {
+            "type" : "string",
+            "example" : "СТО"
+          },
+          "LectureHours" : {
+            "type" : "integer",
+            "example" : 150
+          },
+          "PracticeHours" : {
+            "type" : "integer",
+            "example" : 100
+          },
+          "LabHours" : {
+            "type" : "integer",
+            "example" : 50
+          }
+        }
+      },
+      "entityData_2" : {
+        "type" : "object",
+        "properties" : {
+          "Mark" : {
+            "type" : "number",
+            "example" : 90
+          },
+          "StudentId" : {
+            "type" : "integer",
+            "example" : 1
+          },
+          "SubjectId" : {
+            "type" : "integer",
+            "example" : 1
+          }
+        }
+      }
+    }
+  }
+}
